@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('Compile') {
       steps {
-        bat 'gradle asssembleDebug'
+        bat 'gradlew asssembleDebug'
       }
     }
     stage('Unit test') {
