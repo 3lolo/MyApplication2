@@ -39,3 +39,5 @@ pipeline {
         androidLint pattern: '**/lint-results-*.xml'
       }
     }
+  }
+}
