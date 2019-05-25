@@ -8,9 +8,9 @@ pipeline {
   stages {
     stage('Unit test') {
       steps {
+        sh 'ls -la ${pwd()}'
         bat 'gradlew testDebugUnitTest testDebugUnitTest'
         junit '**/TEST-*.xml'
-        sh 'ls -la ${pwd()}'
       }
     }
     stage('Build APK') {
