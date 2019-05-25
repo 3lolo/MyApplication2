@@ -42,7 +42,16 @@ pipeline {
   }
    post {
         success {
-            emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
-        }
+           attachLog: true, body:
+   """<p>EXECUTED: Job <b>\'${env.JOB_NAME}:${env.BUILD_NUMBER})\'
+   </b></p><p>View console output at "<a href="${env.BUILD_URL}"> 
+   ${env.JOB_NAME}:${env.BUILD_NUMBER}</a>"</p> 
+     <p><i>(Build log is attached.)</i></p>""", 
+    compressLog: true,
+    recipientProviders: [[$class: 'DevelopersRecipientProvider'], 
+     [$class: 'RequesterRecipientProvider']],
+    replyTo: 'do-not-reply@company.com', 
+    subject: "Status successs", 
+    to: 'wopozniak@gmail.com pozniack@gmail.com'       }
     }
 }
