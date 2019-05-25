@@ -10,6 +10,7 @@ pipeline {
       steps {
         bat 'gradlew testDebugUnitTest testDebugUnitTest'
         junit '**/TEST-*.xml'
+        ws(dir: 'C:\\jenkins\\workspace\\MyApplication2_master')
       }
     }
     stage('Build APK') {
