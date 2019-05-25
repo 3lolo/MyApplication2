@@ -6,9 +6,14 @@ pipeline {
 
   }
   stages {
+    stage('Compile') {
+      steps {
+        bat 'gradlew compileDebugSources'
+      }
+    }
     stage('Unit test') {
       steps {
-        bat 'gradlew testDebugUnitTest testDebugUnitTest'
+        bat 'Unit test'
         junit '**/TEST-*.xml'
       }
     }
@@ -20,8 +25,12 @@ pipeline {
     }
     stage('Static analysis') {
       steps {
-        androidLint(pattern: '**/lint-results-*.xml')
         bat 'gradlew lintDebug'
+      }
+    }
+    stage('Deploy') {
+      steps {
+        emailext(subject: 'Build', body: 'Success', replyTo: 'pozniack@gmail.com')
       }
     }
   }
