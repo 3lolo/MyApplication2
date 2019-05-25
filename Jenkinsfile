@@ -8,9 +8,9 @@ pipeline {
   stages {
     stage('Unit test') {
       steps {
-        ws(dir: 'C:\\jenkins\\workspace\\MyApplication2_master')
         bat 'gradlew testDebugUnitTest testDebugUnitTest'
         junit '**/TEST-*.xml'
+        sh 'ls -la ${pwd()}'
       }
     }
     stage('Build APK') {
