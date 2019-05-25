@@ -26,6 +26,9 @@ pipeline {
       }
     }
   }
+  environment {
+    GRADLE_USER_HOME = 'C:\\jenkins\\workspace\\MyApplication2_master'
+  }
   options {
     skipStagesAfterUnstable()
   }
