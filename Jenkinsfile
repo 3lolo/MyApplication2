@@ -13,20 +13,20 @@ pipeline {
     }
     stage('Unit test') {
       steps {
-        sh './gradlew testDebugUnitTest testDebugUnitTest'
+        bat 'gradlew testDebugUnitTest testDebugUnitTest'
         junit '**/TEST-*.xml'
       }
     }
     stage('Build APK') {
       steps {
-        sh './gradlew assembleDebug'
+        bat 'gradlew assembleDebug'
         archiveArtifacts '**/*.apk'
       }
     }
     stage('Static analysis') {
       steps {
-        sh './gradlew lintDebug'
         androidLint(pattern: '**/lint-results-*.xml')
+        bat 'gradlew lintDebug'
       }
     }
   }
