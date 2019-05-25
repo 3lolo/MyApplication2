@@ -6,11 +6,6 @@ pipeline {
 
   }
   stages {
-    stage('Compile') {
-      steps {
-        bat 'gradlew compileDebugSources'
-      }
-    }
     stage('Unit test') {
       steps {
         bat 'gradlew testDebugUnitTest testDebugUnitTest'
