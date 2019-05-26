@@ -8,47 +8,40 @@ pipeline {
   stages {
     stage('Compile') {
       steps {
-        bat 'gradlew compileDebugSources'
+        bat 'gradlew compileDemoDebugSources'
       }
     }
     stage('Unit test') {
       steps {
-        bat 'gradlew testDebugUnitTest testDebugUnitTest'
+        bat 'gradlew testDemoDebugUnitTest testDebugUnitTest'
         junit '**/TEST-*.xml'
       }
     }
     stage('Build APK') {
       steps {
-        bat 'gradlew assembleDebug'
+        bat 'gradlew assembleDemoDebug'
         archiveArtifacts '**/*.apk'
-      }
-    }
-    stage('Static analysis') {
-      steps {
-        bat 'gradlew lintDebug'
       }
     }
     stage('Deploy') {
       steps {
-        emailext(subject: 'Build', body: 'Success', replyTo: 'pozniack@gmail.com')
+        signAndroidApks()
       }
     }
   }
   environment {
     GRADLE_USER_HOME = 'C:\\jenkins\\workflow-libs\\gradle'
   }
+  post {
+    always {
+      echo 'I will always say Hello again!'
+      mail(to: 'pozniack@gmail.com', subject: 'Oops!', body: "Build ${env.BUILD_NUMBER} failed; ${env.BUILD_URL}")
+      emailext(body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}", recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}", to: 'wopozniack@gmail.com, pozniack@gmail.com')
+
+    }
+
+  }
   options {
     skipStagesAfterUnstable()
-  }
-   post {
-       always {
-            echo 'I will always say Hello again!'
-            mail to: 'pozniack@gmail.com', subject: 'Oops!', body: "Build ${env.BUILD_NUMBER} failed; ${env.BUILD_URL}"
-            emailext body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
-                recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
-                subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}", 
-                to:"wopozniack@gmail.com, pozniack@gmail.com"
-            
-        }
   }
 }
