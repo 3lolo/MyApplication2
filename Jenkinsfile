@@ -50,4 +50,5 @@ pipeline {
                 to:"wopozniack@gmail.com, pozniack@gmail.com"
             
         }
+  }
 }
