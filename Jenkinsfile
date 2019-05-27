@@ -11,12 +11,6 @@ pipeline {
         bat 'gradlew compileDemoDebugSources'
       }
     }
-    stage('Unit test') {
-      steps {
-        bat 'gradlew testDemoDebugUnitTest'
-        junit '**/TEST-*.xml'
-      }
-    }
     stage('Build APK') {
       steps {
         bat 'gradlew assembleDemoDebug'
