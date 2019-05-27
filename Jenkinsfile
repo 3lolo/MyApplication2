@@ -8,6 +8,7 @@ pipeline {
   stages {
     stage('Compile') {
       steps {
+        bat 'clean'
         bat 'gradlew compileDemoDebugSources'
       }
     }
