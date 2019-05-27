@@ -26,6 +26,7 @@ pipeline {
     stage('Deploy') {
       steps {
         signAndroidApks()
+        bat 'gradlew assembleFullRelease -PkeyAlias=\'test\' -PkeyPas=a123a123 -PstoreFile=\'C:/jenkins/keystore/keystore.jks\' -PstorePass=a123a123'
       }
     }
   }
