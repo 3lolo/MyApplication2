@@ -17,9 +17,14 @@ pipeline {
         bat 'gradlew assembleFullRelease -PkeyAlias=\'test\' -PkeyPas=a123a123 -PstoreFile=\'C:/jenkins/keystore/keystore.jks\' -PstorePass=a123a123'
       }
     }
+    stage('Anatolii Pozniak') {
+      steps {
+        fabric(apiKey: 'ed9829a8396bceae47d4b5f246afc0a169c13096', buildSecret: 'a45cf0dbf4fdf79187c1335f45a99897ab4ff952926132e02d84d4093b7e3ab8', apkPath: 'C:\\jenkins\\workspace\\MyApplication2_master\\app\\build\\outputs\\apk\\full\\release\\app-full-release-unsigned.apk', testersEmails: 'pozniack@gmail.com', releaseNotesType: 'new build', releaseNotesParameter: '1.0.0', notifyTestersType: 'type', releaseNotesFile: 'no', testersGroup: 'none', organization: 'none', useAntStyleInclude: true)
+      }
+    }
   }
   environment {
-    GRADLE_USER_HOME = 'C:\\jenkins\\workflow-libs\\gradle'
+    GRADLE_ROOT_HOME = 'C:\\jenkins\\workflow-libs\\gradle'
   }
   post {
     always {
