@@ -23,6 +23,9 @@ pipeline {
       }
     }
   }
+  environment {
+    GRADLE_ROOT_HOME = 'C:\\jenkins\\workflow-libs\\gradle'
+  }
   post {
     always {
       echo 'I will always say Hello again!'
