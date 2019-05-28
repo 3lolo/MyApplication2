@@ -24,7 +24,8 @@ pipeline {
     }
   }
   environment {
-    GRADLE_ROOT_HOME = 'C:\\jenkins\\workflow-libs\\gradle'
+    GRADLE_ROOT_HOME = 'C:\\Jenkins\\workflow-libs\\gradle'
+    GRADLE_USER_HOME = 'C:\\Jenkins\\workflow-libs\\gradle\\user'
   }
   post {
     always {
