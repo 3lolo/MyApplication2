@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.myapplication">
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -21,7 +22,7 @@
 
         <meta-data
             android:name="io.fabric.ApiKey"
-            android:value="7f5f210bf632a002fd1e8da118475b8ede979f21" />
+            android:value="ed9829a8396bceae47d4b5f246afc0a169c13096" />
     </application>
 
 </manifest>
