@@ -19,7 +19,7 @@ android {
 
     signingConfigs {
         demo {
-            storeFile file('C:\\Users\\pozni\\AndroidStudioProjects\\MyApplication2\\keystore\\keystore.jks')
+            storeFile file('..\\keystore\\keystore.jks')
             storePassword 'a123a123'
             keyAlias = 'test'
             keyPassword 'a123a123'
