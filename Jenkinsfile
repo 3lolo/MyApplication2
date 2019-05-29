@@ -12,17 +12,15 @@ pipeline {
         bat 'gradlew compileDemoDebugSources'
       }
     }
-
     stage('Fabric') {
       steps {
         bat 'gradlew assembleFullRelease'
-         bat 'gradlew crashlyticsUploadDistributionFullRelease'
+        bat 'gradlew crashlyticsUploadDistributionFullRelease'
       }
     }
   }
   environment {
-    GRADLE_ROOT_HOME = 'C:\\Jenkins\\workflow-libs\\gradle'
-    GRADLE_USER_HOME = 'C:\\Jenkins\\workflow-libs\\gradle\\user'
+    GRADLE_ROOT_HOME = 'var/jenkins_home/workflow-libs/gradle'
   }
   post {
     always {
