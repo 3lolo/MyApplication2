@@ -8,8 +8,8 @@ pipeline {
   stages {
     stage('Compile') {
       steps {
-        bat 'gradlew clean'
-        bat 'gradlew compileDemoDebugSources'
+        sh './gradlew clean'
+        sh './gradlew compileDemoDebugSources'
       }
     }
     stage('Fabric') {
