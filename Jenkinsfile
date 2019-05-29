@@ -12,14 +12,11 @@ pipeline {
         bat 'gradlew compileDemoDebugSources'
       }
     }
-    stage('Deploy') {
-      steps {
-        bat 'gradlew assembleFullRelease -PkeyAlias=\'test\' -PkeyPas=a123a123 -PstoreFile=\'C:/jenkins/keystore/keystore.jks\' -PstorePass=a123a123'
-      }
-    }
+
     stage('Fabric') {
       steps {
-        bat 'gradlew assembleFullDebug crashlyticsUploadDistributionFullDebug'
+        bat 'gradlew assembleFullRelease'
+         bat 'gradlew crashlyticsUploadDistributionFullRelease'
       }
     }
   }
