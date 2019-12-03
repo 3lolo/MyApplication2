@@ -5,20 +5,7 @@ pipeline {
     }
 
   }
-  stages {
-    stage('Compile') {
-      steps {
-        sh './gradlew clean'
-        sh './gradlew compileDemoDebugSources'
-      }
-    }
-    stage('Fabric') {
-      steps {
-        bat 'gradlew assembleFullRelease'
-        bat 'gradlew crashlyticsUploadDistributionFullRelease'
-      }
-    }
-  }
+  
   environment {
     GRADLE_ROOT_HOME = 'var/jenkins_home/workflow-libs/gradle'
   }
